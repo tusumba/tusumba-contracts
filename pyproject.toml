@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tusumba-contracts"
+version = "0.1.0"
+description = "Схемы событий RabbitMQ для сервисов Tusumba"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["pydantic>=2.6,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "mypy>=1.10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tusumba_contracts = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+# Русский текст в строках и комментариях - не опечатки в «похожих» символах
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+packages = ["tusumba_contracts"]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
