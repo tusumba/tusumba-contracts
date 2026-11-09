@@ -11,9 +11,10 @@
 | Событие | Публикует | Потребляет |
 |---|---|---|
 | `FriendRequested`, `EventInvitationSent` | identity-service | notifications-service |
-| `EventPublished`, `EventUpdated` | events-service | notifications-service |
+| `EventPublished`, `EventUpdated`, `TeamInvitationSent` | events-service | notifications-service |
 | `TicketPurchased`, `RegistrationChanged` | ticketing-service | notifications-service |
 | `ApplicationApproved` | moderation-service | events-service, notifications-service |
+| `ApplicationRejected` | moderation-service | notifications-service |
 | `ComplaintResolved` | moderation-service | notifications-service |
 
 Состав и поля событий согласуются с командами сервисов, поэтому любое изменение схемы идёт через PR с одобрением ответственного и затронутых команд.
